@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: financial-calculator
+    runtime: static
+    branch: main
+    buildCommand: echo "No build step"
+    staticPublishPath: .

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Financial Calculator</title>
+  <meta name="description" content="Loan, savings, and compound interest calculators." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles.css" />
+  <script defer src="./src/app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">ƒ</div>
+        <div>
+          <div class="brand__title">Financial Calculator</div>
+          <div class="brand__sub">Fast, simple, and transparent math.</div>
+        </div>
+      </div>
+      <button id="mode" class="mode" type="button" aria-label="Toggle dark mode">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="modeLabel">Night</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Calculate the stuff you actually need</h1>
+      <p class="muted">Loan payments, savings growth, and compound interest — with clear formulas and no fluff.</p>
+    </section>
+
+    <section class="grid" aria-label="Calculators">
+      <!-- Loan calculator -->
+      <article class="card">
+        <h2>Loan payment</h2>
+        <p class="muted">Monthly payment for an amortizing loan.</p>
+
+        <div class="fields">
+          <label>
+            <span>Principal ($)</span>
+            <input id="loanPrincipal" inputmode="decimal" value="350000" />
+          </label>
+          <label>
+            <span>APR (%)</span>
+            <input id="loanApr" inputmode="decimal" value="6.75" />
+          </label>
+          <label>
+            <span>Term (years)</span>
+            <input id="loanYears" inputmode="numeric" value="30" />
+          </label>
+        </div>
+
+        <div class="result">
+          <div>
+            <div class="label">Monthly payment</div>
+            <div class="value" id="loanPayment">—</div>
+          </div>
+          <button class="btn" id="loanCalc">Calculate</button>
+        </div>
+
+        <details class="details">
+          <summary>Formula</summary>
+          <p class="mono">Payment = P · r · (1+r)^n / ((1+r)^n − 1)</p>
+          <p class="muted">Where P=principal, r=monthly rate (APR/12), n=number of months.</p>
+        </details>
+      </article>
+
+      <!-- Savings growth -->
+      <article class="card">
+        <h2>Savings growth</h2>
+        <p class="muted">Monthly contributions with compound growth.</p>
+
+        <div class="fields">
+          <label>
+            <span>Starting balance ($)</span>
+            <input id="savStart" inputmode="decimal" value="10000" />
+          </label>
+          <label>
+            <span>Monthly contribution ($)</span>
+            <input id="savMonthly" inputmode="decimal" value="500" />
+          </label>
+          <label>
+            <span>APY (%)</span>
+            <input id="savApy" inputmode="decimal" value="5" />
+          </label>
+          <label>
+            <span>Years</span>
+            <input id="savYears" inputmode="numeric" value="10" />
+          </label>
+        </div>
+
+        <div class="result">
+          <div>
+            <div class="label">Ending balance</div>
+            <div class="value" id="savEnd">—</div>
+            <div class="mini muted" id="savBreakdown">—</div>
+          </div>
+          <button class="btn" id="savCalc">Calculate</button>
+        </div>
+
+        <details class="details">
+          <summary>Method</summary>
+          <p class="muted">We simulate month-by-month: add contribution, apply monthly growth.</p>
+        </details>
+      </article>
+
+      <!-- Compound interest (lump sum) -->
+      <article class="card">
+        <h2>Compound interest</h2>
+        <p class="muted">Growth of a single deposit with compounding.</p>
+
+        <div class="fields">
+          <label>
+            <span>Deposit ($)</span>
+            <input id="ciPrincipal" inputmode="decimal" value="25000" />
+          </label>
+          <label>
+            <span>Rate (%)</span>
+            <input id="ciRate" inputmode="decimal" value="7" />
+          </label>
+          <label>
+            <span>Compounds / year</span>
+            <input id="ciN" inputmode="numeric" value="12" />
+          </label>
+          <label>
+            <span>Years</span>
+            <input id="ciYears" inputmode="numeric" value="15" />
+          </label>
+        </div>
+
+        <div class="result">
+          <div>
+            <div class="label">Future value</div>
+            <div class="value" id="ciFuture">—</div>
+          </div>
+          <button class="btn" id="ciCalc">Calculate</button>
+        </div>
+
+        <details class="details">
+          <summary>Formula</summary>
+          <p class="mono">FV = P · (1 + r/n)^(n·t)</p>
+        </details>
+      </article>
+
+      <article class="card card--note">
+        <h2>Notes</h2>
+        <ul class="muted">
+          <li>This is educational — not financial advice.</li>
+          <li>Rates are assumed constant.</li>
+          <li>Payments exclude taxes/insurance/fees.</li>
+        </ul>
+        <button class="btn btn--ghost" id="copy">Copy shareable URL</button>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <div class="muted">Built as a static site. Ready for Render Blueprint sync.</div>
+    </footer>
+  </main>
+</body>
+</html>

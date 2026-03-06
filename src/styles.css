@@ -1,0 +1,139 @@
+:root{
+  --bg:#0b0f17;
+  --panel:rgba(255,255,255,.06);
+  --panel2:rgba(255,255,255,.10);
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.68);
+  --border:rgba(255,255,255,.12);
+  --accent:#7dd3fc;
+  --accent2:#f6c177;
+  --shadow:0 18px 60px rgba(0,0,0,.45);
+  --radius:18px;
+  --max:1100px;
+}
+
+[data-theme="day"]{
+  --bg:#f7f6f2;
+  --panel:rgba(10,15,23,.05);
+  --panel2:rgba(10,15,23,.08);
+  --text:rgba(10,15,23,.92);
+  --muted:rgba(10,15,23,.66);
+  --border:rgba(10,15,23,.12);
+  --shadow:0 18px 60px rgba(10,15,23,.18);
+  --accent:#0369a1;
+  --accent2:#b45309;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(900px 500px at 10% 0%, rgba(246,193,119,.14), transparent 60%),
+    radial-gradient(900px 540px at 80% -10%, rgba(125,211,252,.20), transparent 60%),
+    var(--bg);
+  color:var(--text);
+}
+
+.wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+.top{
+  position:sticky; top:0; z-index:10;
+  backdrop-filter: blur(14px);
+  border-bottom:1px solid var(--border);
+  background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.08));
+}
+[data-theme="day"] .top{
+  background: linear-gradient(to bottom, rgba(255,255,255,.85), rgba(255,255,255,.55));
+}
+
+.nav{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0}
+.brand{display:flex; align-items:center; gap:12px}
+.logo{
+  width:44px; height:44px; border-radius:16px;
+  display:grid; place-items:center;
+  background: linear-gradient(135deg, rgba(125,211,252,.92), rgba(246,193,119,.82));
+  color: rgba(0,0,0,.85);
+  font-weight: 900;
+  box-shadow: var(--shadow);
+}
+.brand__title{font-weight:800; letter-spacing:.01em}
+.brand__sub{font-size:.92rem; opacity:.75}
+
+.mode{
+  display:flex; align-items:center; gap:10px;
+  border:1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor:pointer;
+}
+.mode:hover{background:var(--panel2)}
+.dot{width:10px; height:10px; border-radius:999px; background: var(--accent2); box-shadow:0 0 0 4px rgba(246,193,119,.16)}
+
+.hero{padding: 28px 0 10px}
+.hero h1{margin:0; font-size: clamp(1.8rem, 3.5vw, 2.4rem)}
+
+.grid{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:12px; padding: 18px 0 40px}
+
+.card{
+  border:1px solid var(--border);
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+.card--note{background: radial-gradient(600px 240px at 60% 0%, rgba(125,211,252,.16), transparent 60%), var(--panel)}
+
+h2{margin:0 0 8px; font-size:1.2rem}
+
+.fields{display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top: 10px}
+label span{display:block; font-size:.86rem; opacity:.78; margin-bottom:6px}
+input{
+  width:100%;
+  padding:10px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  outline:none;
+}
+[data-theme="day"] input{background: rgba(10,15,23,.03)}
+input:focus{border-color: rgba(125,211,252,.55); box-shadow: 0 0 0 4px rgba(125,211,252,.12)}
+
+.result{
+  margin-top: 12px;
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.label{font-size:.88rem; opacity:.78}
+.value{font-size:1.45rem; font-weight:800; letter-spacing:-.01em}
+.mini{margin-top:4px; font-size:.92rem}
+
+.btn{
+  border:1px solid var(--border);
+  background: linear-gradient(135deg, rgba(125,211,252,.86), rgba(246,193,119,.78));
+  color: rgba(0,0,0,.86);
+  border-radius: 14px;
+  padding: 10px 12px;
+  cursor:pointer;
+  font-weight: 800;
+}
+.btn:hover{filter: brightness(1.02)}
+.btn--ghost{background: var(--panel); color: var(--text)}
+.btn--ghost:hover{background: var(--panel2)}
+
+.details{margin-top: 10px}
+.details summary{cursor:pointer; opacity:.9}
+.mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; opacity:.9}
+
+.muted{opacity:.74; line-height: 1.6}
+
+.footer{padding: 12px 0 44px; border-top: 1px solid var(--border)}
+
+@media (max-width: 880px){
+  .grid{grid-template-columns: 1fr}
+  .fields{grid-template-columns: 1fr}
+}
